@@ -1,3 +1,11 @@
+/**
+	@Rodrigo Huarcaya Alba Y0091437
+	@Moritz
+
+	Drachenspiels Version 1
+**/
+
+
 import java.util.Scanner;
 
 public class Drachenkampf_F_ {
@@ -29,15 +37,21 @@ public class Drachenkampf_F_ {
 			int heroAttackPower = 0;
 			int heroRandomNum = (int)(Math.random()*10);
 			int heroAttackChance = 0;
-			if (weaponChoice == 1) {
+			
+			switch (weaponChoice) {
 				//Pfeil wurde ausgewählt
+			case 1:	
 				heroAttackPower = powerPfeilBogen;
 				heroAttackChance = 5;
-			} else if (weaponChoice == 2) {
+				System.out.println(heroAttackChance);
+				break;
+			case 2:
 				//Schwert wurde ausgewählt
 				heroAttackPower = powerSchwert;
 				heroAttackChance = 3;
-			} else {
+				System.out.println(heroAttackChance);
+				break;
+			default:
 				System.out.println("Sie haben eine ungueltige Option gewaehlt");
 			}
 			
