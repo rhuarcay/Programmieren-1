@@ -1,19 +1,15 @@
+import java.util.Scanner;
 /**
  *	Hier Klassenkommentar schreiben:
  *	Es soll die Klasse beschrieben.
  *
- *	@author Rodrigo Huarcaya Alba Y0091437
- *	@author Moritz Richter Y0091797
+ *	@author Rodrigo Huarcaya Alba 4919667 Gruppe 1b
+ *	@author Moritz Richter 4931881 Gruppe 1b
  *
  *	@version Drachenspiels Version 1
  *	
- */
-
- 
-
-import java.util.Scanner;
-
-public class Drachenkampf {
+*/
+public class DrachenKampf { 
 	public static void main(String[] args) {
 		/**
 		 *	@param heroLife: 	Leben des Heros
@@ -60,16 +56,17 @@ public class Drachenkampf {
 				case 1:	
 					heroAttackPower = powerPfeilBogen;
 					heroAttackChance = 5;
-					System.out.println(heroAttackChance);
+					//System.out.println(heroAttackChance);
 					break;
 				case 2:
 					//Schwert wurde ausgewählt
 					heroAttackPower = powerSchwert;
 					heroAttackChance = 3;
-					System.out.println(heroAttackChance);
+					//System.out.println(heroAttackChance);
 					break;
 				default:
 					System.out.println("Sie haben eine ungueltige Option gewaehlt");
+					continue;
 			}
 			
 			// Parameter des Drachen werden erzeugt bzw. berechnet
@@ -104,7 +101,7 @@ public class Drachenkampf {
 				System.out.println("Leben des Helden	:" + heroLifeO);	// Leben des Helden ausgeben
 				System.out.println("Leben des Drachen	:" + dragonLifeX);	// Leben des Drachen ausgeben
 			}
-	
+			
 		} while (heroLife > 0 && dragonLife > 0);
 		
 		if (dragonLife <= 0) {
