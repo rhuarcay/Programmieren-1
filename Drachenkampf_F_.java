@@ -18,16 +18,16 @@ public class Drachenkampf_F_ {
 		/**
 		 *	@param heroLife: 	Leben des Heros
 		 *	@param dragonLife: 	Leben des Drachen
-		 *	@param powerPfeilBogen, powerSchwert, powerFeuer:	Angreifschaden der Waffen
-		 *	@param weaponChoice: Auswahl zwischen Waffen 
-		 *	@param heroRandomNum:	Zufalls generator für die Angriefswahrscheinlichkeit
+		 *	@param powerPfeilBogen, powerSchwert, powerFeuer:	Angriffsschaden der Waffen
+		 *	@param weaponChoice: 	Auswahl der Waffe 
+		 *	@param heroRandomNum:	Zufallsgenerator für die Angriffswahrscheinlichkeit
 		 *
 		 *
-		 *	@return heroAttackPower: Angriefschaden nach Waffen auswahl
-		 *	@return heroAttackChance: Hero Angriefserfolgswahrscheinlichkeit nach Waffen auswahl
-		 *	@return heroLife, dragonLife: Falls ein Angreif Erfolgreich war, reduzierte Leben wiedergeben
+		 *	@return heroAttackPower: Angriffsschaden nach Waffenauswahl
+		 *	@return heroAttackChance: Hero Angriffserfolgswahrscheinlichkeit nach Auswahl der Waffe
+		 *	@return heroLife, dragonLife: Falls ein Angriff erfolgreich war, reduzierte Leben wiedergeben
 		 */
-		//Methode um ein neues Scanner hinzuzufügen
+		//Methode um ein neuen Scanner hinzuzufügen
 		Scanner s = new Scanner(System.in);
 		
 		int heroLife = 10;
@@ -37,9 +37,9 @@ public class Drachenkampf_F_ {
 		String heroLifeO = new String(new char[heroLife]).replace("\0", "O ");		// new char has a dafault value 0 oder \u0000 oder \0
 		String dragonLifeX = new String(new char[dragonLife]).replace("\0", "X "); 
 		System.out.println("");
-		System.out.println("Der Kamfp beginnt");
-		System.out.println("Leben des Helden	:" + heroLifeO);	// Leben des Heldes ausgegeben
-		System.out.println("Leben des Drachen	:" + dragonLifeX);	// Leben des Drachen ausgegeben
+		System.out.println("Der Kampf beginnt");
+		System.out.println("Leben des Helden	:" + heroLifeO);	// Leben des Helden ausgeben
+		System.out.println("Leben des Drachen	:" + dragonLifeX);	// Leben des Drachen ausgeben
 		
 		// Angriffswerte zuweisen:
 		int powerPfeilBogen = 2;
@@ -48,7 +48,7 @@ public class Drachenkampf_F_ {
 		
 		do {
 			System.out.println("");
-			System.out.println("Der Hedl kann mit Pfeil und Bogen (1) oder mit dem Schwert (2) angreifen.");
+			System.out.println("Der Held kann mit Pfeil und Bogen (1) oder mit dem Schwert (2) angreifen.");
 			int weaponChoice = s.nextInt(); //(1) Für Pfeil und Bogen/(2) für Schwert
 			// Paramater des Helden werden erzeugt bzw. berechnet
 			int heroAttackPower = 0;
@@ -56,7 +56,7 @@ public class Drachenkampf_F_ {
 			int heroAttackChance = 0;
 			
 			switch (weaponChoice) {
-				//Pfeil wurde ausgewählt
+					//Pfeil wurde ausgewählt
 				case 1:	
 					heroAttackPower = powerPfeilBogen;
 					heroAttackChance = 5;
@@ -101,8 +101,8 @@ public class Drachenkampf_F_ {
 			if (dragonLife >= 0 && heroLife >= 0) {
 				heroLifeO = new String(new char[heroLife]).replace("\0", "O ");
 				dragonLifeX = new String(new char[dragonLife]).replace("\0", "X ");
-				System.out.println("Leben des Helden	:" + heroLifeO);	// Leben des Heldes ausgegeben
-				System.out.println("Leben des Drachen	:" + dragonLifeX);	// Leben des Drachen ausgegeben
+				System.out.println("Leben des Helden	:" + heroLifeO);	// Leben des Helden ausgeben
+				System.out.println("Leben des Drachen	:" + dragonLifeX);	// Leben des Drachen ausgeben
 			}
 	
 		} while (heroLife > 0 && dragonLife > 0);
