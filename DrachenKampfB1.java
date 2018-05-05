@@ -9,7 +9,7 @@ import java.util.Scanner;
  *	@version Drachenspiels Version 1
  *	
 */
-public class DrachenKampf { 
+public class DrachenKampfB1 { 
 	public static void main(String[] args) {
 		/**
 		 *	@param heroLife: 	Leben des Heros
