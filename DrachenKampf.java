@@ -20,8 +20,10 @@ public class DrachenKampf {
 			
 			int feldWide = 0; // Variable für die Breite des Feldes
 			int feldLength = 0; // Variable für die Länge des Feldes
-			int [][] playerPos = new int [0][0]; // Variable für die Start-Pos des Helden
-			int [][] dragonPos = new int [0][0]; // Variable für die Start-Pos des Drachen
+			int playerLength = 0;// Variable für die Start-Pos des Helden
+			int playerWide = 0;
+			int dragonLength = 0; // Variable für die Start-Pos des Drachen
+			int dragonWide = 0;
 			char [][] arenaC = new char [0][0];
 			
 			if (isInterger(sParam[0]) && isInterger(sParam[1])) {
@@ -34,10 +36,12 @@ public class DrachenKampf {
 			}
 			
 			if (feldLength == feldWide && feldLength >= 9 && feldLength % 2 != 0) {
-				playerPos = new int [feldLength/2][1];
-				dragonPos = new int [feldLength/2][feldWide-1];
+				playerLength = feldLength-feldLength+1;
+				playerWide = feldWide/2;
+				dragonLength = feldLength-1;
+				dragonWide = feldWide/2;
 				arenaC = new char [feldLength][feldWide];
-				drawArena(arenaC);
+				drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
 			} else {
 				System.out.println("Bitte überprüfen Sie die Parameter nochmal \nDie Parameter sollen gleich sein,  >= 9 sein \nund sollen ungerade sein");
 			}
@@ -116,7 +120,7 @@ public class DrachenKampf {
 		}
 	}
 	
-	public static void drawArena(char[][] arena) {
+	public static void drawArena(char[][] arena, int playerL, int playerW, int dragonL, int dragonW) {
 		for (int i = 0; i < arena.length; i++) {
 			for (int j = 0; j < arena.length; j++) {
 				arena[i][j] = '#';
@@ -130,13 +134,32 @@ public class DrachenKampf {
 					} else if (j==arena.length-1) {
 						System.out.print(arena[i][j]);
 					} else {
-						System.out.print(" ");
-					}
+						if (i==playerL && j==playerW) {
+							arena[i][j] = 'P';
+							System.out.print(arena[i][j]);
+						} else if (i==dragonL-1 && j==dragonW) {
+							arena[i][j] = 'D';
+							System.out.print(arena[i][j]);
+						} else {
+							System.out.print(" ");	
+					}	}
+					
 					
 				}
 			}
 			System.out.print("\n");
 		}
+		
+		/*
+		
+		System.out.print(playerDraw.length+""+playerDraw[0].length);
+		
+		playerDraw[playerDraw.length-1][playerDraw[0].length-1] = 'P';
+		dragonDraw[dragonDraw.length-1][dragonDraw[0].length-1] = 'D';
+		System.out.print(playerDraw[playerDraw.length-1][playerDraw[0].length-1r]);
+		System.out.print(dragonDraw[dragonDraw.length-1][dragonDraw[0].length-1]);
+		
+		*/
 	}
 	
 }
