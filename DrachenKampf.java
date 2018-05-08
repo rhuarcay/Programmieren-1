@@ -12,45 +12,51 @@ public class DrachenKampf {
      * @param args Bisher keine
      */
     public static void main(String[] args) {
-        String[] sParam = args;
+        Scanner sc = new Scanner(System.in);
+		String[] sParam = args;
 		if (sParam.length != 2) {
 				System.out.println("Sie haben eine fehlerhafte anzahl an Parameter eingegeben \nDas Programm wird abgebrochen");
 				System.exit(1);
-			}
+		}
 			
-			int feldWide = 0; // Variable für die Breite des Feldes
-			int feldLength = 0; // Variable für die Länge des Feldes
-			int playerLength = 0;// Variable für die Start-Pos des Helden
-			int playerWide = 0;
-			int dragonLength = 0; // Variable für die Start-Pos des Drachen
-			int dragonWide = 0;
-			char [][] arenaC = new char [0][0];
-			
-			if (isInterger(sParam[0]) && isInterger(sParam[1])) {
-				feldWide = Integer.parseInt(sParam[0]);
-				feldLength = Integer.parseInt(sParam[1]);
-				//System.out.println(feldWide + "" + feldLength + "Wurden in Int umgewandelt");
-			} else {
-				System.out.println("Sie haben eine nicht güiltige Parameter eingegeben \nBitte geben Sie nur Zahlen als Parameter ein");
-				System.exit(2);
-			}
-			
-			if (feldLength == feldWide && feldLength >= 9 && feldLength % 2 != 0) {
-				playerLength = feldLength-feldLength+1;
-				playerWide = feldWide/2;
-				dragonLength = feldLength-1;
-				dragonWide = feldWide/2;
-				arenaC = new char [feldLength][feldWide];
-				drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
-			} else {
-				System.out.println("Bitte überprüfen Sie die Parameter nochmal \nDie Parameter sollen gleich sein,  >= 9 sein \nund sollen ungerade sein");
-			}
+		int feldWide = 0; // Variable für die Breite des Feldes
+		int feldLength = 0; // Variable für die Länge des Feldes
+		int playerLength = 0;// Variable für die Start-Pos des Helden
+		int playerWide = 0;
+		int dragonLength = 0; // Variable für die Start-Pos des Drachen
+		int dragonWide = 0;
+		char [][] arenaC = new char [0][0];
+		
+		if (isInterger(sParam[0]) && isInterger(sParam[1])) {
+			feldWide = Integer.parseInt(sParam[0]);
+			feldLength = Integer.parseInt(sParam[1]);
+			//System.out.println(feldWide + "" + feldLength + "Wurden in Int umgewandelt");
+		} else {
+			System.out.println("Sie haben eine nicht güiltige Parameter eingegeben \nBitte geben Sie nur Zahlen als Parameter ein");
+			System.exit(2);
+		}
+		System.out.println("Der Kampf beginnt");
+		
+		if (feldLength == feldWide && feldLength >= 9 && feldLength % 2 != 0) {
+			playerLength = feldLength-feldLength+1;
+			playerWide = feldWide/2;
+			dragonLength = feldLength-1;
+			dragonWide = feldWide/2;
+			arenaC = new char [feldLength][feldWide];
+			drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
+		} else {
+			System.out.println("Bitte überprüfen Sie die Parameter nochmal \nDie Parameter sollen gleich sein,  >= 9 sein \nund sollen ungerade sein");
+		}
+		
+		String way = dir();
+		playerLength = playerLength + moveY(way);
+		playerWide = playerWide + moveX(way);
+		drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
 		
 		String t = "\u2665"; //Herz
         int player = 12; //Leben des Helds
         int dragon = 6; //Leben des Drachen
 
-        Scanner sc = new Scanner(System.in);
 		
 		
         while (true) {
@@ -150,16 +156,64 @@ public class DrachenKampf {
 			System.out.print("\n");
 		}
 		
-		/*
-		
-		System.out.print(playerDraw.length+""+playerDraw[0].length);
-		
-		playerDraw[playerDraw.length-1][playerDraw[0].length-1] = 'P';
-		dragonDraw[dragonDraw.length-1][dragonDraw[0].length-1] = 'D';
-		System.out.print(playerDraw[playerDraw.length-1][playerDraw[0].length-1r]);
-		System.out.print(dragonDraw[dragonDraw.length-1][dragonDraw[0].length-1]);
-		
-		*/
+	
 	}
 	
+	public static int moveX(String way) {
+		int xAchse = 0;
+				
+		switch (way) {
+			case "w":
+				xAchse = 0; //foward
+				break;
+			case "a":
+				xAchse = - 1; //left
+				break;
+			case "s":
+				xAchse = 0; //backward
+				break;
+			case "d":
+				xAchse = 1; //right
+				break;
+			case "q":
+				xAchse = 0;
+				break;
+			default:
+				System.out.println("Sie haben ein ungueltige Option gewaehlt");	
+		}
+		return xAchse;
+	}
+	
+	public static int moveY(String way) {
+		int yAchse = 0;
+		
+		switch (way) {
+			case "w":
+				yAchse = 1; //foward
+				break;
+			case "a":
+				yAchse = 0; //left
+				break;
+			case "s":
+				yAchse = -1; //backward
+				break;
+			case "d":
+				yAchse = 0; //right
+				break;
+			case "q":
+				yAchse = 0;
+				break;
+			default:
+				System.out.println("Sie haben ein ungueltige Option gewaehlt");	
+		}
+		return yAchse;
+	}
+	
+	public static String dir() {
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("w, a, s, d, q zur Bewegung nutzen. Bei q bleibt der Spieler, wo er ist.");
+		String way = sc.next();
+		return way;
+	}
 }
