@@ -35,9 +35,9 @@ public class DrachenKampf {
 			System.out.println("Sie haben eine nicht güiltige Parameter eingegeben \nBitte geben Sie nur Zahlen als Parameter ein");
 			System.exit(2);
 		}
-		System.out.println("Der Kampf beginnt");
 		
 		if (feldLength == feldWide && feldLength >= 9 && feldLength % 2 != 0) {
+			System.out.println("Der Kampf beginnt");
 			playerLength = feldLength-feldLength+1;
 			playerWide = feldWide/2;
 			dragonLength = feldLength-1;
@@ -46,18 +46,27 @@ public class DrachenKampf {
 			drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
 		} else {
 			System.out.println("Bitte überprüfen Sie die Parameter nochmal \nDie Parameter sollen gleich sein,  >= 9 sein \nund sollen ungerade sein");
+			System.exit(3);
 		}
 		
-		String way = dir();
-		playerLength = playerLength + moveY(way);
-		playerWide = playerWide + moveX(way);
-		drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
-		
+		while (true) {
+			char way = dir();
+			playerLength = playerLength + moveY(way);
+			playerWide = playerWide + moveX(way);
+			if (walkable(feldLength, feldWide, playerLength, playerWide, dragonLength, dragonWide) == false) {
+				playerLength = playerLength - moveY(way);
+				playerWide = playerWide - moveX(way);
+				continue;
+			} else {
+				break;
+			}
+		} 
+				drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
 		String t = "\u2665"; //Herz
         int player = 12; //Leben des Helds
         int dragon = 6; //Leben des Drachen
 
-		
+		int counter = 0; //Anzahl an durchgänge
 		
         while (true) {
             int playerATK = 3; //Angriff des Spielers, jedesmal zurückgesetzt
@@ -76,7 +85,23 @@ public class DrachenKampf {
                 System.out.print("X "); //Lebenspunkte als X darstellen
             }
             System.out.println("\n");
-
+			
+			if (counter >0) {
+				while (true) {
+					char way = dir();
+					playerLength = playerLength + moveY(way);
+					playerWide = playerWide + moveX(way);
+					if (walkable(feldLength, feldWide, playerLength, playerWide, dragonLength, dragonWide) == false) {
+						playerLength = playerLength - moveY(way);
+						playerWide = playerWide - moveX(way);
+						continue;
+					} else {
+						break;
+					}
+				} 
+				drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
+			}
+			
             int waffe = 0;
             while (waffe != 1 && waffe != 2) {
                 System.out.println("Der Held kann mit Pfeil und Bow (1) oder mit dem Sword (2) angreifen.");
@@ -114,6 +139,7 @@ public class DrachenKampf {
                 System.out.println("Der Held wurde besiegt. Oh nein.");
                 break;
             }
+			counter++;
         }
     }
 	
@@ -159,23 +185,23 @@ public class DrachenKampf {
 	
 	}
 	
-	public static int moveX(String way) {
+	public static int moveX(char way) {
 		int xAchse = 0;
 				
 		switch (way) {
-			case "w":
+			case 'w':
 				xAchse = 0; //foward
 				break;
-			case "a":
+			case 'a':
 				xAchse = - 1; //left
 				break;
-			case "s":
+			case 's':
 				xAchse = 0; //backward
 				break;
-			case "d":
+			case 'd':
 				xAchse = 1; //right
 				break;
-			case "q":
+			case 'q':
 				xAchse = 0;
 				break;
 			default:
@@ -184,23 +210,23 @@ public class DrachenKampf {
 		return xAchse;
 	}
 	
-	public static int moveY(String way) {
+	public static int moveY(char way) {
 		int yAchse = 0;
 		
 		switch (way) {
-			case "w":
+			case 'w':
 				yAchse = 1; //foward
 				break;
-			case "a":
+			case 'a':
 				yAchse = 0; //left
 				break;
-			case "s":
+			case 's':
 				yAchse = -1; //backward
 				break;
-			case "d":
+			case 'd':
 				yAchse = 0; //right
 				break;
-			case "q":
+			case 'q':
 				yAchse = 0;
 				break;
 			default:
@@ -209,11 +235,28 @@ public class DrachenKampf {
 		return yAchse;
 	}
 	
-	public static String dir() {
-		
+	public static char dir() {
+		char way;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("w, a, s, d, q zur Bewegung nutzen. Bei q bleibt der Spieler, wo er ist.");
-		String way = sc.next();
+		do {
+			System.out.println("w, a, s, d, q zur Bewegung nutzen. Bei q bleibt der Spieler, wo er ist.");
+			way = sc.next().charAt(0);
+		} while (way != 'w' && way != 'a' && way != 's' && way != 'd' && way != 'q');
 		return way;
 	}
+	
+	public static boolean walkable(int fL, int fW, int pL, int pW, int dL, int dW) {
+		if (pL == 0 || pL == fL-1) {
+			System.out.println("Die Bewegung ist nicht zulässig");
+			return false;
+		} else if (pW == 0 || pW == fW-1) {
+			System.out.println("Die Bewegung ist nicht zulässig");
+			return false;
+		} else if (pL == dL && dW == dW) {
+			System.out.println("Die Bewegung ist nicht zulässig");
+			return false;
+		} else {
+		return true;
+		}	
+	}	
 }
