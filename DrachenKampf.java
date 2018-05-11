@@ -61,7 +61,8 @@ public class DrachenKampf {
 				break;
 			}
 		} 
-				drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
+		drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
+		
 		String t = "\u2665"; //Herz
         int player = 12; //Leben des Helds
         int dragon = 6; //Leben des Drachen
@@ -215,13 +216,13 @@ public class DrachenKampf {
 		
 		switch (way) {
 			case 'w':
-				yAchse = 1; //foward
+				yAchse = -1; //foward
 				break;
 			case 'a':
 				yAchse = 0; //left
 				break;
 			case 's':
-				yAchse = -1; //backward
+				yAchse = 1; //backward
 				break;
 			case 'd':
 				yAchse = 0; //right
@@ -245,14 +246,14 @@ public class DrachenKampf {
 		return way;
 	}
 	
-	public static boolean walkable(int fL, int fW, int pL, int pW, int dL, int dW) {
+	public static boolean walkable(int fL, int fW, int pL, int pW, int dL, int dW) { //pl PlayerLenght, pw.... fL FeldLenght ...... dL DragonLenght..
 		if (pL == 0 || pL == fL-1) {
 			System.out.println("Die Bewegung ist nicht zulässig");
 			return false;
 		} else if (pW == 0 || pW == fW-1) {
 			System.out.println("Die Bewegung ist nicht zulässig");
 			return false;
-		} else if (pL == dL && dW == dW) {
+		} else if (pL == dL && pW == dW) {
 			System.out.println("Die Bewegung ist nicht zulässig");
 			return false;
 		} else {
