@@ -62,6 +62,7 @@ public class DrachenKampf {
 			}
 		} 
 		drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
+		int distance = distance(playerLength, playerWide, dragonLength, dragonWide);
 		
 		String t = "\u2665"; //Herz
         int player = 12; //Leben des Helds
@@ -101,6 +102,7 @@ public class DrachenKampf {
 					}
 				} 
 				drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
+				distance = distance(playerLength, playerWide, dragonLength, dragonWide);
 			}
 			
             int waffe = 0;
@@ -260,4 +262,10 @@ public class DrachenKampf {
 		return true;
 		}	
 	}	
+	
+	public static int distance(int pL, int pW, int dL, int dW){
+		distance= Math.abs((pL - dL) + (pW - dW));
+		return distance;
+		
+	}
 }
