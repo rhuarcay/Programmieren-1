@@ -17,7 +17,7 @@ public class DrachenKampf {
     /**
      * Hier startet das Programm
      *
-     * @param args Länge des Feldes, Breite des Feldes
+     * @param args Laenge des Feldes, Breite des Feldes
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -28,7 +28,7 @@ public class DrachenKampf {
 		}
 			
 		int feldWidth = 0; // Variable für die Breite des Feldes
-		int feldLength = 0; // Variable für die Länge des Feldes
+		int feldLength = 0; // Variable für die Laenge des Feldes
 		int playerLength = 0; // Variable für die Start-Pos des Helden
 		int playerWidth	= 0;
 		int dragonLength = 0; // Variable für die Start-Pos des Drachen
@@ -40,7 +40,7 @@ public class DrachenKampf {
 			feldLength = Integer.parseInt(sParam[1]);
 			//System.out.println(feldWidth + "" + feldLength + "Wurden in Int umgewandelt");
 		} else {
-			System.out.println("Sie haben eine nicht güiltige Parameter eingegeben \nBitte geben Sie nur Zahlen als Parameter ein");
+			System.out.println("Sie haben einen nicht güiltigen Parameter eingegeben. \nBitte geben Sie nur Zahlen als Parameter ein");
 			System.exit(2);
 		}
 		
@@ -54,7 +54,7 @@ public class DrachenKampf {
 			arenaC = new char[feldLength][feldWidth];
 			drawArena(arenaC, playerLength, playerWidth, dragonLength, dragonWidth);
 		} else {
-			System.out.println("Bitte überprüfen Sie die Parameter nochmal \nDie Parameter sollen gleich sein, >= 9 sein")
+			System.out.println("Bitte überprüfen Sie die Parameter nochmal \nDie Parameter sollen gleich sein, >= 9 sein");
 			System.out.println("und sollen ungerade sein");
 			System.exit(3);
 		}
