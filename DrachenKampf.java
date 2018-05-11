@@ -1,15 +1,23 @@
 import java.util.Scanner;
 
 /**
- * Repräsentation des Kampfes zwischen Gut und Böse
- * Held gegen Drache
+ *	Die Klasse DrachenKampf beginnt mit Eingabe des Lebens für Held und Drachen diese werden als X und O ausgegeben
+ * 	Nach Angriffsauswahl wird Trefferwahrscheinlichekeit sowie Staerke der ausgewaehlten Waffe bestimmt
+ * 	Nach Bestimmung des Parameters des Drachen beginnt der Kampf
+ *	Held und Drache bekaempfen sich gegenseitig wobei der Held startet
+ *	Erreicht ein Lebenswert der Charaktere 0 ist das Spiel vorbei
+ *
+ *	@author Rodrigo Huarcaya Alba 4919667 Gruppe 1b
+ *	@author Moritz Richter 4931881 Gruppe 1b
+ *
+ *	@version Drachenspiel Version 2
  */
 public class DrachenKampf {
 
     /**
      * Hier startet das Programm
      *
-     * @param args Bisher keine
+     * @param args Länge des Feldes, Breite des Feldes
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -62,7 +70,7 @@ public class DrachenKampf {
 			}
 		} 
 		drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
-		int distance = distance(playerLength, playerWide, dragonLength, dragonWide);
+		int distance = distance(playerLength, playerWide, dragonLength, dragonWide)-1;
 		
 		String t = "\u2665"; //Herz
         int player = 12; //Leben des Helds
@@ -102,23 +110,41 @@ public class DrachenKampf {
 					}
 				} 
 				drawArena(arenaC, playerLength, playerWide, dragonLength, dragonWide);
-				distance = distance(playerLength, playerWide, dragonLength, dragonWide);
+				distance = distance(playerLength, playerWide, dragonLength, dragonWide)-1;
 			}
 			
+			
             int waffe = 0;
-            while (waffe != 1 && waffe != 2) {
-                System.out.println("Der Held kann mit Pfeil und Bow (1) oder mit dem Sword (2) angreifen.");
-                waffe = sc.nextInt();
-            }
+            
+			if (distance == 1) {
+				
+				while (waffe != 1 && waffe != 2) {
+					System.out.println("Der Held kann mit Pfeil und Bow (1) oder mit dem Sword (2) angreifen.");
+					waffe = sc.nextInt();
+				}
 
-            if (waffe == 1) { //Pfeil und Bow
-                playerATK = 5; //Der Spieler wird stärker
-                weaponOffset = 70; //Dafür sinkt seine Genauigkeit
-            } else if (waffe == 2) { //Schwert
-                playerATK = 3; //Schächer
-                weaponOffset = 50; //Aber genauer
-            }
+				if (waffe == 1) { //Pfeil und Bow
+					playerATK = 5; //Der Spieler wird stärker
+					weaponOffset = 70; //Dafür sinkt seine Genauigkeit
+				} else if (waffe == 2) { //Schwert
+					playerATK = 3; //Schächer
+					weaponOffset = 50; //Aber genauer
+				}
+			} else {
+				while (waffe != 1) {
+					System.out.println("Der Held kann mit Pfeil und Bow (1)");
+					waffe = sc.nextInt();
+				}
+					if (distance > 6) {
+						distance = 6;
+					}
+					playerATK = 5 - distance/5; //Der Spieler wird stärker
+					weaponOffset = 70 + distance; //Dafür sinkt seine Genauigkeit
+			
+				
+			}
 
+			
             int playerHitRate = (int) (Math.random() * 100);
             if (playerHitRate > weaponOffset) {
                 System.out.println("Der Drache wurde getroffen.");
@@ -264,8 +290,7 @@ public class DrachenKampf {
 	}	
 	
 	public static int distance(int pL, int pW, int dL, int dW){
-		distance= Math.abs((pL - dL) + (pW - dW));
+		int distance = Math.abs((pL - dL) + (pW - dW));
 		return distance;
-		
 	}
 }
