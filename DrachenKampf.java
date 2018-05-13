@@ -135,7 +135,7 @@ public class DrachenKampf {
 				}
 			} else {
 				while (waffe != 1) { //Angriff ist nur mit dem Bow moeglich
-					System.out.println("Der Held kann mit Pfeil und Bow (1)");
+					System.out.println("Der Held kann mit Pfeil und Bow (1) angreifen");
 					waffe = sc.nextInt();
 				}
 				if (distance > 6) { 
