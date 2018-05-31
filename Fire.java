@@ -2,10 +2,11 @@ package pckg1;
 
 public class Fire extends Weapon {
 	
-	public Fire(int atk, int offset) {
+	public Fire() {
 		
-		super.setAtk(atk);
-		super.setOffset(offset);
+		this.setAtk(4);
+		this.setOffset(50);
+		
 		
 	}
 	

@@ -7,14 +7,18 @@ abstract class Weapon {
 	
 	public Weapon() {
 		
+		setAtk(4);
+		setOffset(50);
 	}
 	
+	/*
 	public Weapon(int atk, int offset) {
 		
 		setAtk(atk);
 		setOffset(offset);
 		
 	}
+	*/
 	
 	public void setOffset(int offset) {
 		
@@ -22,17 +26,16 @@ abstract class Weapon {
 			this.offset = offset;
 		}
 	}
-
-	public int getOffset() {
-		return offset;
-	}
-	
 	
 	public void setAtk(int atk) {
 		
 		if(atk !=0) {
 			this.atk = atk;
 		}
+	}
+	
+	public int getOffset() {
+		return offset;
 	}
 
 	public int getAtk() {

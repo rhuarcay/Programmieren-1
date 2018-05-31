@@ -2,10 +2,11 @@ package pckg1;
 
 public class Sword extends Weapon {
 	
-		public Sword(int atk, int offset) {
+	public Sword() {
 		
-		super.setAtk(atk);
-		super.setOffset(offset);
+		//if distance >= 2 then 3 else 0
+		this.setAtk(3);
+		this.setOffset(30);
 		
 	}
 	
