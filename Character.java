@@ -8,9 +8,17 @@ abstract class Character {
 	private int lebensPunkte;
 	private Weapon[] weapon;
 	
-	public Character(int lp, char symbol) {
-		this.setLebensPunkte(lp);
+	public Character() {
+		
+	}
+
+	public Character(int lebensPunkte, char symbol, int xPos, int yPos) {
+		
+		this.setLebensPunkte(lebensPunkte);
 		this.setSymbol(symbol);
+		this.setXPos(xPos);
+		this.setYPos(yPos);
+		
 	}
 	
 	public void setXPos(int xPos) {
@@ -32,8 +40,21 @@ abstract class Character {
 	public int getLebensPunkte() {
 		return this.lebensPunkte;
 	}
+	
 	public String toString() {
-		return xPos + " " + yPos + " " + symbol + " " + lebensPunkte;
+		String life = "";
+        for (int i = 0; i < this.getLebensPunkte(); i++) {
+			life = life + " " + symbol;
+        }
+		
+		switch (symbol) {
+			case 'O':
+				return "Leben des Helden:  " + life;
+			case 'X':
+				return "Leben des Drachen: " + life;
+		}
+		
+		return "";
 	}
 	
 	

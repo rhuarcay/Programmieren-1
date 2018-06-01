@@ -4,18 +4,15 @@ public class Probe {
 
 	public static void main(String [] args) {
 	
-	Fire fire = new Fire();
-	Bow bow = new Bow();
-	Sword sword = new Sword();
-	Dragon dragon = new Dragon();
-	Player player = new Player();
-	int damge = 2;
+	//Fire fire = new Fire();
+	//Bow bow = new Bow();
+	//Sword sword = new Sword(); 
+	//int lebensPunkte, char symbol, int xPos, int yPos
+	Dragon dragon = new Dragon(25, 'X', 4, 7);
+	Player player = new Player(15, 'O', 5, 8);
+	//int damge = 2;
 	
-	dragon.setXPos(5);
-	dragon.setYPos(9);
 	System.out.println(dragon);
-	
-	dragon.setLebensPunkte(dragon.getLebensPunkte() - damge);
 	
 	System.out.println(dragon);
 	
