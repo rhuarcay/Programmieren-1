@@ -37,6 +37,18 @@ abstract class Character {
 		this.lebensPunkte = lebensPunkte;
 	}
 	
+	public int getXPos() {
+		return this.xPos;
+	}
+	
+	public int getYPos() {
+		return this.yPos;
+	}
+	
+	public char getSymbol() {
+		return this.symbol;
+	}
+	
 	public int getLebensPunkte() {
 		return this.lebensPunkte;
 	}
