@@ -69,4 +69,9 @@ public class Arena {
 		return this.map[0].length;
 	}
 	*/
+	
+	public boolean isWalkable(int x, int y){
+		
+		return map[y][x] != '#' && map[y][x] != 'D';
+	}
 }

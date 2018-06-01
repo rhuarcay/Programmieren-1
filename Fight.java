@@ -1,7 +1,11 @@
 package pckg1;
 
-public class Fight {
+import java.util.Scanner;
 
+public class Fight {
+	
+	Scanner sc = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 		
 		int args0 = Integer.parseInt(args[0]);
@@ -21,6 +25,7 @@ public class Fight {
 		System.out.println("Der Kampf beginnt");
 		
 		arena.makeArena();
+		player.move();
 		
 	}
 
