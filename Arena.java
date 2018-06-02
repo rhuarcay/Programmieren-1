@@ -60,6 +60,13 @@ public class Arena {
             line = "";
         }
 	}
+	
+	
+	public boolean walkable(int y, int x) {
+        return this.map[y][x] != '#' && this.map[y][x] != 'X';
+    }
+	
+	
 	/*
 	public int getArg0() {
 		return this.map.length;

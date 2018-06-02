@@ -6,7 +6,7 @@ public class Dragon extends Character {
 		
 	}
 	
-	public Dragon(int lebensPunkte, char symbol, int xPos, int yPos) {
+	public Dragon(int lebensPunkte, char symbol, int yPos, int xPos) {
 		
 		super.setLebensPunkte(lebensPunkte);
 		super.setSymbol(symbol);

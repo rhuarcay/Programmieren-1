@@ -12,13 +12,17 @@ public class Fight {
             System.exit(0);
         }
 		
-		Dragon dragon = new Dragon(25, 'X', args0/2, 1);
-		Player player = new Player(15, 'O', args0/2, args1-2);
+		Dragon dragon = new Dragon(25, 'X', args1-2, args0/2);
+		Player player = new Player(15, 'O', 1, args0/2);
 		
 		Arena arena = new Arena(player, dragon);
 		arena.setMap(args0, args1);
 			
 		System.out.println("Der Kampf beginnt");
+		
+		arena.makeArena();
+		
+		player.move(arena);
 		
 		arena.makeArena();
 		

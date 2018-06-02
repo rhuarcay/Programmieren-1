@@ -12,7 +12,7 @@ abstract class Character {
 		
 	}
 
-	public Character(int lebensPunkte, char symbol, int xPos, int yPos) {
+	public Character(int lebensPunkte, char symbol, int yPos, int xPos) {
 		
 		this.setLebensPunkte(lebensPunkte);
 		this.setSymbol(symbol);
