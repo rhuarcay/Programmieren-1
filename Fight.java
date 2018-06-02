@@ -26,6 +26,8 @@ public class Fight {
 		
 		arena.makeArena();
 		
+		System.out.println(player);
+		System.out.println(dragon);
 	}
 
 }
