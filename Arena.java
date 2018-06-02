@@ -67,6 +67,12 @@ public class Arena {
     }
 	
 	
+	public int distance(Player player, Dragon dragon) {
+		int distanceX = Math.abs(dragon.getXPos() - player.getXPos());
+        int distanceY = Math.abs(dragon.getYPos() - player.getYPos());
+        return distanceX + distanceY;
+	}
+	
 	/*
 	public int getArg0() {
 		return this.map.length;

@@ -28,6 +28,8 @@ public class Fight {
 		
 		System.out.println(player);
 		System.out.println(dragon);
+		System.out.println(arena.distance(player, dragon));
+		
 	}
 
 }
