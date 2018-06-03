@@ -1,0 +1,3 @@
+*.class
+.gitlab-ci.yml
+.gradle
