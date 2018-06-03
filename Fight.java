@@ -1,7 +1,8 @@
 package pckg1;
 
 public class Fight {
-
+	public static int distance1 = 0;
+	
 	public static void main(String[] args) {
 		
 		int args0 = Integer.parseInt(args[0]);
@@ -28,8 +29,8 @@ public class Fight {
 		
 		System.out.println(player);
 		System.out.println(dragon);
-		System.out.println(arena.distance(player, dragon));
-		
+		distance1 = arena.distance(player, dragon);
+		System.out.println(distance1);
 	}
 
 }
