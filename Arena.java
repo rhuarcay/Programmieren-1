@@ -1,85 +1,113 @@
-package pckg1;
-
+/**
+ * Repräsentation der Arena
+ */
 public class Arena {
-	
-	private char[][] map;
-	private Player player;
-	private Dragon dragon;
-	
-	public Arena() {
-		
-	}
-	
-	public Arena(Player player, Dragon dragon) {
-		this.setPlayer(player);
-		this.setDragon(dragon);
-	}
-	
-	public void setMap(int arg0, int arg1) {
-		this.map = new char[arg0][arg1];
-	}
-	
-	public void setPlayer(Player player) {
-		this.player = player;
-	}
-	
-	public void setDragon(Dragon dragon) {
-		this.dragon = dragon;
-	}
-	
-	public void makeArena() {
-		
-		//Map mit Leerzeichen füllen
-        for (int i = 0; i < map.length; i++) {
+
+    /**
+     * Enthält alles, was sich auf dem Spielfeld befindet.
+     */
+    private char[][] map;
+
+    /**
+     * Der Drache der Arena
+     */
+    private Dragon dragon;
+
+    /**
+     * Der Spieler der Arena
+     */
+    private Player player;
+
+    /**
+     * Erstellt eine neue Arena
+     *
+     * @param args Größen
+     */
+    public Arena(String[] args) {
+        map = new char[Integer.parseInt(args[0])][Integer.parseInt(args[1])];
+        if (map[0].length < 5 || map.length < 5) {
+            System.out.println("Die Map muss mindestens die Dimension 5x5 haben.");
+            System.exit(25);
+        }
+        dragon = new Dragon(map[0].length, map.length); //Drachen in unterster Zeile
+        player = new Player(map[0].length, map.length); //Spieler in oberster Zeile
+        for (int i = 0; i < map.length; i++) { //Map mit Leerzeichen füllen
             for (int j = 0; j < map[0].length; j++) {
                 map[i][j] = ' ';
             }
         }
-		
-		map[player.getYPos()][player.getXPos()] = player.getSymbol();
-        map[dragon.getYPos()][dragon.getXPos()] = dragon.getSymbol();
-
-        //Wände in erster und letzter Zeile
-        for (int i = 0; i < map[0].length; i++) {
+        for (int i = 0; i < map[0].length; i++) { //Wände in erster und letzter Zeile
             map[0][i] = '#';
             map[map.length - 1][i] = '#';
         }
-        //Wände in erster und letzter Spalte
-        for (int i = 0; i < map.length; i++) {
+        for (int i = 0; i < map.length; i++) { //Wände in erster und letzter Spalte
             map[i][0] = '#';
             map[i][map[0].length - 1] = '#';
         }
+    }
 
+    /**
+     * Gibt die Map als String zurück
+     * @return Map als String
+     */
+    @Override
+    public String toString() {
+        String result = "";
         //Ausgabe der Map
         String line = "";
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
-                line += map[i][j];
+                if (i == player.getY() && j == player.getX()) {
+                    line += player.getSymbol(); //Befindet sich hier der Player
+                } else if (i == dragon.getY() && j == dragon.getX()) {
+                    line += dragon.getSymbol(); //Befindet sich hier der Spieler
+                } else {
+                    line += map[i][j];  
+                } 
             }
-            System.out.println(line);
+            result += (line + "\n");
             line = "";
         }
-	}
-	
-	
-	public boolean walkable(int y, int x) {
-        return this.map[y][x] != '#' && this.map[y][x] != 'X';
+        return result;
     }
-	
-	
-	public int distance(Player player, Dragon dragon) {
-		int distanceX = Math.abs(dragon.getXPos() - player.getXPos());
-        int distanceY = Math.abs(dragon.getYPos() - player.getYPos());
+
+    /**
+     * Abstand zwischen zwei Charaktern
+     * @param char1 Charakter 1
+     * @param char2 Charakter 2
+     * @return Abstand in Feldern
+     */
+    public int distance(Character char1, Character char2) {
+        int distanceX = Math.abs(char1.getX() - char2.getX());
+        int distanceY = Math.abs(char1.getY() - char2.getY());
         return distanceX + distanceY;
-	}
-	
-	/*
-	public int getArg0() {
-		return this.map.length;
-	}
-	
-	public int getArg1() {
-		return this.map[0].length;
-	}
-	*/
+    }
+
+    /**
+     * Ist Feld begehbar
+     * @param y y-Koordinate
+     * @param x x-Koordintae
+     * @return Begehbar?
+     */
+    public boolean walkable(int y, int x) {
+        boolean wall = map[y][x] != '#'; //Ist dort eine Wand?
+        boolean drago = dragon.getX() != x || dragon.getY() != y; //Ist dort ein Drache?
+        return wall && drago;
+    }
+
+    /**
+     * Gibt den Spieler der Map zurück
+     * @return Spieler
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
+     * Gibt den Drachen der Map zurück
+     * @return Drache der Map
+     */
+    public Dragon getDragon() {
+        return dragon;
+    }
 }
