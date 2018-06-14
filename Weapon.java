@@ -7,13 +7,13 @@ public abstract class Weapon {
      * Offset der Waffe.
      * Je höher, desto weniger wahrscheinlich ist es, dass diese Waffe trifft.
      */
-    private int offset;
+    protected int offset;
 
     /**
      * Angriff der Waffe
      * Der Feind verliert so viele Lebenspunkte, wie die Waffe ATK hat, wenn sie trifft
      */
-    private int atk;
+    protected int atk;
 
     /**
      * Standardkonstruktor für neue Waffen.
@@ -42,15 +42,7 @@ public abstract class Weapon {
         return atk;
     }
 	
-	public int getOffset(){
-		return offset;
-	}
-	
 	public void setATK(int atk){
 		this.atk = atk;
-	}
-	
-	public void setOffset(int offset){
-		this.offset = offset;
 	}
 }

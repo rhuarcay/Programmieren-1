@@ -1,8 +1,8 @@
-public class MeteorSchauer{
+public class MeteorSchauer extends SpecialWeapon{
 	
-	public MeteorSchauer{
-		this.ATK = 7;
+	public MeteorSchauer(){
+		this.atk = 7;
 		this.offset = 50;
-		this.Ammo = 0;
+		this.ammo = 0;
 	}
 }

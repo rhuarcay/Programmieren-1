@@ -1,16 +1,16 @@
 public class SpecialWeapon extends Weapon implements Intiface{
 	
-	protected int Ammo;
+	protected int ammo;
 	
 	public SpecialWeapon(){
-		this.ATK = 5; 
+		this.atk = 5; 
 		this.offset = 50;
 	}
 	
 	public boolean spendAmmo(){	//mit Überlagerung ?
 		
-		this.kAmmo -= 1;
-		if(this.kAmmo >= 0){
+		this.ammo -= 1;
+		if(this.ammo >= 0){
 			return true;
 		}else {
 			return false;
@@ -21,11 +21,11 @@ public class SpecialWeapon extends Weapon implements Intiface{
 		int radius = (int) (Math.random() * 3);
 		
 		if(radius == 3){
-			this.ATK = 5;
+			this.atk = 5;
 		}else if(radius == 2){
-			this.ATK = 6;
+			this.atk = 6;
 		}else{
-			this.ATK = 7;
+			this.atk = 7;
 		}
 		
 		return radius;
@@ -34,12 +34,12 @@ public class SpecialWeapon extends Weapon implements Intiface{
 	public int arealDamage(){
 		int hitRate = (int) Math.random() * 100;
 		
-		if (hitRate > this.ATK) {
+		if (hitRate > this.atk) {
 			getRadius();
-			return this.ATK;
+			return this.atk;
             
         } else {
-            return this.ATK;
+            return this.atk;
         }
 		//create wall/destroy wall
 		//Meteordmg > Katapultdmg
