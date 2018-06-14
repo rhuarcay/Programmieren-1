@@ -17,7 +17,12 @@ public class Fight {
     public static void main(String[] args) {
         String t = "\u2665"; //Herz
         Arena arena = new Arena(args);
-
+		
+		SpecialWeapon katapult = new SpecialWeapon();
+		SpecialWeapon meteor = new SpecialWeapon();
+		
+		System.out.println(katapult.spendAmmo());
+		
         System.out.println("Der Kampf beginnt");
 
         Player player = arena.getPlayer();

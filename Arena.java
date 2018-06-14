@@ -60,7 +60,7 @@ public class Arena {
                 if (i == player.getY() && j == player.getX()) {
                     line += player.getSymbol(); //Befindet sich hier der Player
                 } else if (i == dragon.getY() && j == dragon.getX()) {
-                    line += dragon.getSymbol(); //Befindet sich hier der Spieler
+                    line += dragon.getSymbol(); //Befindet sich hier der Drache
                 } else {
                     line += map[i][j];  
                 } 

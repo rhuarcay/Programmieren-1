@@ -8,8 +8,8 @@ public class Sword extends Weapon {
      * Erstellt ein neues Schwert
      */
     public Sword() {
-        this.atk = 3;
-        this.offset = 0;
+        this.setATK(3);
+        this.setOffset(0);
     }
 
     /**
@@ -22,11 +22,11 @@ public class Sword extends Weapon {
     @Override
     public int calculateOffset(int distance) {
         if (distance == 1)  {
-            this.offset = 0; //Trifft immer
+            this.setOffset(0); //Trifft immer
         } else { //Zu weit entfernt
             System.out.println("Für den Einsatz des Schwertes ist der Held zu weit vom Drachen entfernt.");
-            this.offset = 100; //Attacke geht immer daneben
+            this.setOffset(100); //Attacke geht immer daneben
         }
-        return this.offset;
+        return this.getOffset();
     }
 }
