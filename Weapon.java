@@ -1,44 +1,44 @@
-package pckg1;
+/**
+ * Allgemeine Waffe
+ * Abstrakt, da es nur spezielle Waffen geben darf
+ */
+public abstract class Weapon {
+    /**
+     * Offset der Waffe.
+     * Je höher, desto weniger wahrscheinlich ist es, dass diese Waffe trifft.
+     */
+    protected int offset;
 
-abstract class Weapon {
+    /**
+     * Angriff der Waffe
+     * Der Feind verliert so viele Lebenspunkte, wie die Waffe ATK hat, wenn sie trifft
+     */
+    protected int atk;
 
-	private int atk;
-	private int offset;
-	
-	public Weapon() {
-		
-		setAtk(4);
-		setOffset(50);
-	}
-	
-	/*
-	public Weapon(int atk, int offset) {
-		
-		setAtk(atk);
-		setOffset(offset);
-		
-	}
-	*/
-	
-	public void setOffset(int offset) {
-		
-		if(offset !=0) {
-			this.offset = offset;
-		}
-	}
-	
-	public void setAtk(int atk) {
-		
-		if(atk !=0) {
-			this.atk = atk;
-		}
-	}
-	
-	public int getOffset() {
-		return offset;
-	}
+    /**
+     * Standardkonstruktor für neue Waffen.
+     * Es gibt keine Waffe vom Typ Weapon!
+     */
+    public Weapon() {
+        this.atk = 3;
+        this.offset = 60;
+    }
 
-	public int getAtk() {
-		return atk;
-	}
+    /**
+     * Gibt den Offset der Waffe zurück
+     *
+     * @param distance Abstand zum Ziel
+     * @return Offset
+     */
+    public int calculateOffset(int distance) {
+        return offset;
+    }
+
+    /**
+     * Gibt ATK Wert zurück
+     * @return ATK
+     */
+    public int getATK() {
+        return atk;
+    }
 }
