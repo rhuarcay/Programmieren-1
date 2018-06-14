@@ -18,10 +18,8 @@ public class Fight {
         String t = "\u2665"; //Herz
         Arena arena = new Arena(args);
 		
-		Katapult katapult = new Katapult();
-		MeteorSchauer meteor = new MeteorSchauer();
 		
-		System.out.println(katapult.spendAmmo());
+		//System.out.println(katapult.spendAmmo());
 		
         System.out.println("Der Kampf beginnt");
 
@@ -84,20 +82,26 @@ public class Fight {
             System.out.println(dragon);
 
             int waffe = 0; //Waffenauswahl
-            while (waffe != 1 && waffe != 2) {
-                System.out.println("Der Held kann mit Pfeil und Bow (1) oder mit dem Sword (2) angreifen.");
+            while (waffe != 1 && waffe != 2 && waffe != 3) {
+                System.out.println("Der Held kann mit Pfeil und Bow (1) oder mit dem Sword (2) oder mit der Katapult(3) angreifen.");
                 waffe = sc.nextInt();
             }
-            //Nutze die Waffe an Stelle -1, da 1. Element im Array Index 0 hat
-            if (player.attack(dragon, player.getWeapons()[waffe - 1], arena.distance(player, dragon))) { 
-                System.out.println("Der Drache wurde getroffen.");
-            } else {
-                System.out.println("Der Drache wurde verfehlt.");
-            }
-            if (!dragon.isAlive()) { //Wurde der Drache besiegt
-                System.out.println("Der Drache wurde besiegt. Hurra.");
-                break;
-            }
+			if (waffe == 1 || waffe ==2){
+				//Nutze die Waffe an Stelle -1, da 1. Element im Array Index 0 hat
+				if (player.attack(dragon, player.getWeapons()[waffe - 1], arena.distance(player, dragon))) { 
+					System.out.println("Der Drache wurde getroffen.");
+				} else {
+					System.out.println("Der Drache wurde verfehlt.");
+				}
+				if (!dragon.isAlive()) { //Wurde der Drache besiegt
+					System.out.println("Der Drache wurde besiegt. Hurra.");
+					break;
+				}
+			} else {
+				//Nutze die SpecialWeapon Katapult an Stelle 2 [3-1]
+				
+				
+			}
 
             if (dragon.attack(player, dragon.getWeapons()[0], arena.distance(player, dragon))) { //Er benutzt stets sein Feuer
                 System.out.println("Der Held wurde verletzt.");

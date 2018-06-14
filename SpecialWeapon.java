@@ -47,7 +47,6 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		int zufallX = (int) Math.random() * x;
 		int zufallY = (int) Math.random() * y;
 		getRadius();
-		
 		if (hitRate > this.offset) {
 			
 			return this.atk;
