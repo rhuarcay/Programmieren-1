@@ -23,7 +23,11 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		//load 2 turns
 		this.ammo += 1;
 		
-		return true;
+		if(this.ammo == 2){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	public int getRadius(){
@@ -51,11 +55,14 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		if (hitRate > this.offset) {
 			
 			return this.atk;
-            
         } else {
             return this.atk;
         }
 		//create wall/destroy wall
+	}
+	public int getLoadStatus(){
+		int status = 2 - this.ammo;
+		return status;
 	}
 	
 	
