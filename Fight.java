@@ -18,8 +18,8 @@ public class Fight {
         String t = "\u2665"; //Herz
         Arena arena = new Arena(args);
 		
-		SpecialWeapon katapult = new SpecialWeapon();
-		SpecialWeapon meteor = new SpecialWeapon();
+		Katapult katapult = new Katapult();
+		MeteorSchauer meteor = new MeteorSchauer();
 		
 		System.out.println(katapult.spendAmmo());
 		

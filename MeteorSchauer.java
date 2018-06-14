@@ -5,4 +5,5 @@ public class MeteorSchauer extends SpecialWeapon{
 		this.offset = 50;
 		this.ammo = 0;
 	}
+	
 }
