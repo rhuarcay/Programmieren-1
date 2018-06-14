@@ -63,7 +63,7 @@ public abstract class Character {
      */
     public boolean attack(Character enemy, Weapon weapon, int distance) {
         int hitRate = (int) (Math.random() * 100);
-        System.out.println(hitRate + " " + distance + " " + weapon.calculateOffset(distance));
+       // System.out.println(hitRate + " " + distance + " " + weapon.calculateOffset(distance));
         if (hitRate > weapon.calculateOffset(distance)) {
             enemy.setHP(enemy.getHP() - weapon.getATK());
             return true;

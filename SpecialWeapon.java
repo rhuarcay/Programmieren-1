@@ -4,7 +4,7 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 	
 	public SpecialWeapon(){
 		this.atk = 5; 
-		this.offset = 50;
+		this.offset = 20;
 	}
 	
 	public boolean spendAmmo(){	//mit Überlagerung ?
@@ -23,7 +23,7 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		//load 2 turns
 		this.ammo += 1;
 		
-		if(this.ammo == 2){
+		if(this.ammo == 4){
 			return true;
 		}else{
 			return false;
@@ -35,10 +35,10 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		
 		if(radius == 2){
 			this.atk += 1;
-			this.offset = 70;
+			this.offset = 50;
 		}else if(radius == 1){
 			this.atk += 2;
-			this.offset = 60;
+			this.offset = 40;
 		}else{
 			this.atk += 3;
 		}
@@ -46,7 +46,7 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		return radius;
 	}
 	
-	public int arealDamage(int x, int y){
+	public int arealDamage(int y, int x){
 		int hitRate = (int) Math.random() * 100;
 		int zufallX = (int) Math.random() * x;
 		int zufallY = (int) Math.random() * y;
@@ -59,6 +59,7 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
         }
 		//create wall/destroy wall
 	}
+	
 	public int getLoadStatus(){
 		int status = 2 - this.ammo;
 		return status;

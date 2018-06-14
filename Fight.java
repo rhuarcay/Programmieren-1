@@ -17,12 +17,12 @@ public class Fight {
     public static void main(String[] args) {
         String t = "\u2665"; //Herz
         Arena arena = new Arena(args);
+		Katapult katapult = new Katapult();
+		MeteorSchauer meteor = new MeteorSchauer();
 		
-		
-		//System.out.println(katapult.spendAmmo());
 		
         System.out.println("Der Kampf beginnt");
-
+		
         Player player = arena.getPlayer();
         Dragon dragon = arena.getDragon();
 
@@ -83,7 +83,7 @@ public class Fight {
 
             int waffe = 0; //Waffenauswahl
             while (waffe != 1 && waffe != 2 && waffe != 3) {
-                System.out.println("Der Held kann mit Pfeil und Bow (1) oder mit dem Sword (2) oder mit der Katapult(3) angreifen.");
+                System.out.println("Der Held kann mit Pfeil und Bow (1) oder mit dem Sword (2) oder mit der Katapult (3) angreifen.");
                 waffe = sc.nextInt();
             }
 			if (waffe == 1 || waffe ==2){
@@ -99,15 +99,33 @@ public class Fight {
 				}
 			} else {
 				//Nutze die SpecialWeapon Katapult an Stelle 2 [3-1]
+				katapult.load();
 				
-				
+				if(katapult.load() == true){
+					System.out.println("Das Katapult wird los gefeuert!");
+					katapult.arealDamage(dragon.getY(), dragon.getX());
+					dragon.setHP(dragon.getHP() - katapult.getATK());
+				}else{
+					continue;
+				}
 			}
-
-            if (dragon.attack(player, dragon.getWeapons()[0], arena.distance(player, dragon))) { //Er benutzt stets sein Feuer
-                System.out.println("Der Held wurde verletzt.");
-            } else {
-                System.out.println("Der Drache hatte eine Fehlzündung. Glück gehabt.");
-            }
+			
+			int zufallAttack = (int) Math.random();
+            if(zufallAttack == 0){
+				if (dragon.attack(player, dragon.getWeapons()[0], arena.distance(player, dragon))) { //Er benutzt stets sein Feuer
+					System.out.println("Der Held wurde verletzt.");
+				}
+				else{
+					 System.out.println("Der Drache hatte eine Fehlz\u00fcndung. Gl\u00fcck gehabt. \n");
+				}
+			}else {
+				if(dragon.attack(player, dragon.getWeapon()[1], arena.distance(player, dragon))){
+				System.out.println("Der Drache benutze den Meteorschauer");
+				} 
+				else {
+                System.out.println("Der Drache hatte eine Fehlz\u00fcndung. Gl\u00fcck gehabt. \n");
+				}
+			}
             if (!player.isAlive()) { //Wurde der Held besiegt
                 System.out.println("Der Held wurde besiegt. Oh nein.");
                 break;
