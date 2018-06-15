@@ -16,8 +16,13 @@ public abstract class Character {
      * Waffe
      */
     protected Weapon[] weapons;
-
-    /**
+	
+	/**
+	 *SpecialWaffe
+	 */
+	//protected SpecialWeapon sWeapon;
+    
+	/**
      * X oder O
      */
     protected char symbol;
@@ -87,7 +92,17 @@ public abstract class Character {
     public Weapon[] getWeapons() {
         return weapons;
     }
-
+	
+	
+	/**
+     * Gibt die special Waffe des Characters zurück
+     * @return Waffe
+     */
+    /*public SpecialWeapon getSWeapon() {
+        return sWeapon;
+    }
+	*/
+	
     /**
      * Lebt dieser Charakter noch?
      * @return Lebt er noch?

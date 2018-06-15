@@ -9,23 +9,19 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 	
 	public boolean spendAmmo(){	//mit Überlagerung ?
 		
-		this.ammo -= 1;
-		if(this.ammo >= 0){
-			System.out.println("Es ist noch " + this.ammo + " Munition mehr vorhanden");
-			return true;
-		}else {
-			System.out.println("Es ist keine Munition mehr vorhanden");
-			return false;
-		}	
+		this.ammo -= 2;
+		return true;
 	}
 	
 	public boolean load(){
 		//load 2 turns
 		this.ammo += 1;
 		
-		if(this.ammo == 4){
+		if(this.ammo == 2){
+			System.out.println("Es ist noch " + 1 + " Munition mehr vorhanden. /n");
 			return true;
 		}else{
+			System.out.println("Es ist keine Munition mehr vorhanden, noch " + getLoadStatus() + " Aufladung um aufgeladen zu sein. /n");
 			return false;
 		}
 	}
@@ -35,27 +31,33 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		
 		if(radius == 2){
 			this.atk += 1;
-			this.offset = 50;
 		}else if(radius == 1){
 			this.atk += 2;
-			this.offset = 40;
+			this.offset = 30;
 		}else{
 			this.atk += 3;
+			this.offset = 40;
 		}
 		
 		return radius;
 	}
 	
 	public int arealDamage(int y, int x){
-		int hitRate = (int) Math.random() * 100;
-		int zufallX = (int) Math.random() * x;
-		int zufallY = (int) Math.random() * y;
-		getRadius();
+		int hitRate = (int) (Math.random() * 100);
+		int zufallX = (int) (Math.random() * x);
+		int zufallY = (int) (Math.random() * y);
+		int radius = getRadius();
 		if (hitRate > this.offset) {
-			
+			System.out.println("Der Drache wurde getroffen.");
+			System.out.println(this.atk);
+			spendAmmo();
 			return this.atk;
         } else {
-            return this.atk;
+            System.out.println("Der Drache wurde verfehlt.");
+			this.atk = 0;
+			System.out.println(this.atk);
+			spendAmmo();
+			return this.atk;
         }
 		//create wall/destroy wall
 	}

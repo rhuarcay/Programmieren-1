@@ -17,6 +17,16 @@ public class Arena {
      * Der Spieler der Arena
      */
     private Player player;
+	
+	/**
+     * Das Katapult der Arena
+     */
+    private Katapult katapult;
+	
+	/**
+     * Das Meteor der Arena
+     */
+    private MeteorSchauer meteor;
 
     /**
      * Erstellt eine neue Arena
@@ -31,7 +41,9 @@ public class Arena {
         }
         dragon = new Dragon(map[0].length, map.length); //Drachen in unterster Zeile
         player = new Player(map[0].length, map.length); //Spieler in oberster Zeile
-        for (int i = 0; i < map.length; i++) { //Map mit Leerzeichen füllen
+        katapult = new Katapult();
+		meteor = new MeteorSchauer();
+		for (int i = 0; i < map.length; i++) { //Map mit Leerzeichen füllen
             for (int j = 0; j < map[0].length; j++) {
                 map[i][j] = ' ';
             }
@@ -109,5 +121,21 @@ public class Arena {
      */
     public Dragon getDragon() {
         return dragon;
+    }
+	
+	/**
+     * Gibt das Katapult der Map zurück
+     * @return Drache der Map
+     */
+    public Katapult getKatapult() {
+        return katapult;
+    }
+	
+	/**
+     * Gibt das Meteor der Map zurück
+     * @return Meteor der Map
+     */
+    public MeteorSchauer getMeteor() {
+        return meteor;
     }
 }

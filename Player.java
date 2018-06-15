@@ -14,7 +14,8 @@ public class Player extends Character {
         y = 1;
         hp = 15;
         symbol = 'O';
-        weapons = new Weapon[]{new Bow(), new Sword(), new Katapult()};
+		//Katapult katapult = new Katapult();
+        weapons = new Weapon[]{new Bow(), new Sword()};
     }
 
     /**
