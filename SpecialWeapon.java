@@ -7,16 +7,8 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		this.offset = 20;
 	}
 	
-	public boolean spendAmmo(){	//mit Überlagerung ?
-		
-		this.ammo -= 1;
-		if(this.ammo >= 0){
-			System.out.println("Es ist noch " + this.ammo + " Munition mehr vorhanden");
-			return true;
-		}else {
-			System.out.println("Es ist keine Munition mehr vorhanden");
-			return false;
-		}	
+	public void spendAmmo(){
+		this.ammo -= 2;
 	}
 	
 	public boolean load(){
@@ -56,6 +48,12 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 	
 	public int getLoadStatus(){
 		int status = 2 - this.ammo;
+		
+		if( status == 0){
+			System.out.println("Waffe ist feuerbereit!");
+		}else{
+			System.out.println("Waffe muss noch" + status + " Runde laden");
+		}
 		return status;
 	}
 	

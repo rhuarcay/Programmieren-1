@@ -1,6 +1,6 @@
 public interface Intiface{
 	
-	public boolean spendAmmo();
+	public void	spendAmmo();
 	public int getRadius();
 	public int arealDamage();
 	public boolean load();

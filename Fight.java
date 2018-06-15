@@ -112,20 +112,19 @@ public class Fight {
 				}
 			}
 			
-			int zufallAttack = (int) (Math.random());
-            if(zufallAttack == 0){
+			int zufallAttack = (int) (Math.random() * 100);
+            if(zufallAttack <= 50){
 				if (dragon.attack(player, dragon.getWeapons()[0], arena.distance(player, dragon))) { //Er benutzt stets sein Feuer
 					System.out.println("Der Held wurde verletzt.");
 				} else {
 					 System.out.println("Der Drache hatte eine Fehlz\u00fcndung. Gl\u00fcck gehabt. \n");
 				}
-			} else {
-				System.out.println("Der Drache lädt");
+			} else{
 				if(meteor.load() == true) {		
 					if(dragon.attack(player, dragon.getWeapons()[1], arena.distance(player, dragon))){
-					System.out.println("Der Drache benutze den Meteorschauer");
+						System.out.println("Der Drache benutze den Meteorschauer");
 					} else {
-					System.out.println("Der Drache hatte eine Fehlz\u00fcndung. Gl\u00fcck gehabt. \n");
+						System.out.println("Der Drache lädt seinen Meteorschauer auf");
 					}
 				}
 			}
