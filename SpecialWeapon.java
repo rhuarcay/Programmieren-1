@@ -23,7 +23,7 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		//load 2 turns
 		this.ammo += 1;
 		
-		if(this.ammo == 4){
+		if(this.ammo == 2){
 			return true;
 		}else{
 			return false;
@@ -46,18 +46,12 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		return radius;
 	}
 	
-	public int arealDamage(int y, int x){
-		int hitRate = (int) Math.random() * 100;
-		int zufallX = (int) Math.random() * x;
-		int zufallY = (int) Math.random() * y;
+	public int arealDamage(){
+		int hitRate = (int) (Math.random() * 100);
 		getRadius();
-		if (hitRate > this.offset) {
-			
-			return this.atk;
-        } else {
-            return this.atk;
-        }
+
 		//create wall/destroy wall
+		return atk;
 	}
 	
 	public int getLoadStatus(){
@@ -66,4 +60,24 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 	}
 	
 	
+	 /**
+     * Gibt ATK Wert zurück
+     * @return ATK
+     */
+	 @Override
+    public int getATK() {
+        return this.atk;
+    }
+	
+	/**
+     * Gibt den Offset der Waffe zurück
+     *
+     * @param distance Abstand zum Ziel
+     * @return Offset
+     */
+	 @Override
+    public int calculateOffset(int distance) {
+		getRadius();
+        return this.offset;
+    }
 }
