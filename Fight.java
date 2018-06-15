@@ -99,9 +99,13 @@ public class Fight {
 				}
 			} else {
 				//Nutze die SpecialWeapon Katapult an Stelle 2 [3-1]
-				if(katapult.load() == true){
-					if (player.attack(dragon, player.getWeapons()[waffe - 1], arena.distance(player, dragon))) { 
+				boolean ready = katapult.load();
+				katapult.getLoadStatus();
+				
+				if(ready == true){
+					if (player.attack(dragon, katapult, arena.distance(player, dragon))) { 
 						System.out.println("Der Drache wurde getroffen.");
+						katapult.arealDamage(arena, dragon);
 					} else {
 						System.out.println("Der Drache wurde verfehlt.");
 					}
