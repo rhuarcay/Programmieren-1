@@ -35,12 +35,12 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		
 		if(radius == 2){
 			this.atk += 1;
-			this.offset = 50;
 		}else if(radius == 1){
 			this.atk += 2;
-			this.offset = 40;
+			this.offset = 30;
 		}else{
 			this.atk += 3;
+			this.offset = 40;
 		}
 		
 		return radius;

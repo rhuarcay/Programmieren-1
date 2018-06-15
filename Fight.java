@@ -119,7 +119,7 @@ public class Fight {
 					 System.out.println("Der Drache hatte eine Fehlz\u00fcndung. Gl\u00fcck gehabt. \n");
 				}
 			}else {
-				if(dragon.attack(player, dragon.getWeapon()[1], arena.distance(player, dragon))){
+				if(dragon.attack(player, dragon.getWeapons()[1], arena.distance(player, dragon))){
 				System.out.println("Der Drache benutze den Meteorschauer");
 				} 
 				else {
