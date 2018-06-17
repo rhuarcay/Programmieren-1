@@ -1,10 +1,12 @@
 abstract class SpecialWeapon extends Weapon implements Intiface{
 	
 	protected int ammo;
+	protected int radius;
 	
 	public SpecialWeapon(){
 		this.atk = 5; 
 		this.offset = 20;
+		this.radius = 0;
 	}
 	
 	public void spendAmmo(){
@@ -23,7 +25,7 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 	}
 	
 	public int getRadius(){
-		int radius = (int) (Math.random() * 2);
+		this.radius = (int) (Math.random() * 3);
 		
 		if(radius == 2){
 			this.atk += 1;
@@ -34,14 +36,28 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 			this.atk += 3;
 			this.offset = 40;
 		}
-		
 		return radius;
 	}
 	
-	public int arealDamage(){
-		int hitRate = (int) (Math.random() * 100);
-		getRadius();
+	public int arealDamage(Arena arena, Character enemy){
+		char [][] map = arena.getMap();
+		int rad = this.radius;
+		int enemyY = enemy.getY();
+		int enemyX = enemy.getX();
+		int enemyLY = enemyY - rad - 1;
+		int enemyUY = enemyY + rad + 1;
+		int enemyLX = enemyX - rad - 1;
+		int enemyUX = enemyX + rad + 1;
 
+		int randomY = (int) (Math.random() * (enemyUY - enemyLY)) + enemyLY;
+		int randomX = (int) (Math.random() * (enemyUX - enemyLX)) + enemyLX;
+		
+		if (map[randomY][randomX] == ' ') {
+			arena.setMap(randomY, randomX, '%'); 
+		} else if (map[randomY][randomX] == '%') {
+			arena.setMap(randomY, randomX, ' ');
+		}
+		
 		//create wall/destroy wall
 		return atk;
 	}
@@ -50,9 +66,9 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
 		int status = 2 - this.ammo;
 		
 		if( status == 0){
-			System.out.println("Waffe ist feuerbereit!");
+			System.out.println("Waffe ist feuerbereit! \n");
 		}else{
-			System.out.println("Waffe muss noch" + status + " Runde laden");
+			System.out.println("Waffe muss noch " + status + " Runde laden \n");
 		}
 		return status;
 	}
@@ -75,7 +91,7 @@ abstract class SpecialWeapon extends Weapon implements Intiface{
      */
 	 @Override
     public int calculateOffset(int distance) {
-		getRadius();
+		this.getRadius();
         return this.offset;
     }
 }

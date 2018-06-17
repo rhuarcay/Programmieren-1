@@ -4,6 +4,7 @@ public class Katapult extends SpecialWeapon{
 		this.atk = 5;
 		this.offset = 20;
 		this.ammo = 0;
+		this.radius = 0;
 	}
 	
 }
