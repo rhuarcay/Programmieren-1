@@ -14,6 +14,6 @@ public class Dragon extends Character {
         y = sizeY - 2;
         hp = 25;
         symbol = 'D';
-        weapons = new Weapon[]{new Fire(), new MeteorSchauer()}; //Nur Feuer als Waffe
+        weapons = new Weapon[]{new Fire(), new DracoMeteor()}; //Nur Feuer als Waffe
     }
 }

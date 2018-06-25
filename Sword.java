@@ -21,9 +21,8 @@ public class Sword extends Weapon {
      */
     @Override
     public int calculateOffset(int distance) {
-        if (distance == 1)  {
-            this.offset = 0; //Trifft immer
-        } else { //Zu weit entfernt
+        if (distance == 1) this.offset = 0; //Trifft immer
+        else { //Zu weit entfernt
             System.out.println("Für den Einsatz des Schwertes ist der Held zu weit vom Drachen entfernt.");
             this.offset = 100; //Attacke geht immer daneben
         }

@@ -7,7 +7,7 @@ public class Bow extends Weapon {
      */
     public Bow() {
         this.atk = 1;
-        this.offset = 0;;
+        this.offset = 0;
     }
 
     /**
@@ -18,7 +18,7 @@ public class Bow extends Weapon {
      */
     @Override
     public int calculateOffset(int distance) {
-        this.offset = ( (distance * 10)); //Je weiter entfernt, desto schlechter trifft der Bogen
+        this.offset = (distance * 10); //Je weiter entfernt, desto schlechter trifft der Bogen
         return this.offset;
     }
 }

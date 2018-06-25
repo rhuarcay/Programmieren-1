@@ -17,12 +17,9 @@ public class Fight {
     public static void main(String[] args) {
         String t = "\u2665"; //Herz
         Arena arena = new Arena(args);
-		Katapult katapult = new Katapult();
-		MeteorSchauer meteor = new MeteorSchauer();
-		
-		
+
         System.out.println("Der Kampf beginnt");
-		
+
         Player player = arena.getPlayer();
         Dragon dragon = arena.getDragon();
 
@@ -83,60 +80,49 @@ public class Fight {
 
             int waffe = 0; //Waffenauswahl
             while (waffe != 1 && waffe != 2 && waffe != 3) {
-                System.out.println("Der Held kann mit Pfeil und Bow (1) oder mit dem Sword (2) oder mit der Katapult (3) angreifen.");
+                System.out.println("Der Held kann mit Pfeil und Bow (1),mit dem Sword (2) oder mit dem Katapult (3) angreifen.");
                 waffe = sc.nextInt();
             }
-			if (waffe == 1 || waffe ==2){
-				//Nutze die Waffe an Stelle -1, da 1. Element im Array Index 0 hat
-				if (player.attack(dragon, player.getWeapons()[waffe - 1], arena.distance(player, dragon))) { 
-					System.out.println("Der Drache wurde getroffen.");
-				} else {
-					System.out.println("Der Drache wurde verfehlt.");
-				}
-				if (!dragon.isAlive()) { //Wurde der Drache besiegt
-					System.out.println("Der Drache wurde besiegt. Hurra.");
-					break;
-				}
-			} else {
-				//Nutze die SpecialWeapon Katapult an Stelle 2 [3-1]
-				boolean ready = katapult.load();
-				katapult.getLoadStatus();
-				
-				if(ready == true){
-					if (player.attack(dragon, katapult, arena.distance(player, dragon))) { 
-						System.out.println("Der Drache wurde getroffen.");
-						katapult.arealDamage(arena, dragon);
-					} else {
-						System.out.println("Der Drache wurde verfehlt.");
-					}
-					if (!dragon.isAlive()) { //Wurde der Drache besiegt
-						System.out.println("Der Drache wurde besiegt. Hurra.");
-						break;
-					}
-				}
-			}
-			
-			int zufallAttack = (int) (Math.random() * 100);
-            if(zufallAttack <= 50){
-				if (dragon.attack(player, dragon.getWeapons()[0], arena.distance(player, dragon))) { //Er benutzt stets sein Feuer
-					System.out.println("Der Held wurde verletzt.");
-				} else {
-					 System.out.println("Der Drache hatte eine Fehlz\u00fcndung. Gl\u00fcck gehabt. \n");
-				}
-			} else{
-				if(meteor.load() == true) {		
-					if(dragon.attack(player, dragon.getWeapons()[1], arena.distance(player, dragon))){
-						System.out.println("Der Drache benutze den Meteorschauer");
-					} else {
-						System.out.println("Der Drache lädt seinen Meteorschauer auf");
-					}
-				}
-			}
-            if (!player.isAlive()) { //Wurde der Held besiegt
-                System.out.println("Der Held wurde besiegt. Oh nein.");
-                break;
+
+            Weapon playerWeapon = player.getWeapons()[waffe - 1];
+            if (playerWeapon instanceof SpecialWeapon && !((SpecialWeapon) playerWeapon).load()) {
+                int toLoad = ((SpecialWeapon) playerWeapon).getLoadStatus();
+                System.out.println("Der Spieler belädt sein gefährliches Katapult. Er braucht noch " + toLoad + " Beladungen, bis er es abfeuern kann.");
+            } else {
+                if (player.attack(dragon, playerWeapon, arena.distance(player, dragon))) { //Nutze die Waffe an Stelle -1, da 1. Element im Array Index 0 hat
+                    if (playerWeapon instanceof SpecialWeapon) {
+                        System.out.println("Das Katapult trifft den Drachen mit einem lauten Knall."); //TODO Areal...
+                    } else {
+                        System.out.println("Der Drache wurde verletzt.");
+                    }
+                } else {
+                    System.out.println("Der Drache wurde verfehlt.");
+                }
+                if (!dragon.isAlive()) { //Wurde der Drache besiegt
+                    System.out.println("Der Drache wurde besiegt. Hurra.");
+                    break;
+                }
             }
 
+
+            Weapon dragonWeapon = dragon.getWeapons()[(int) (Math.random() * dragon.weapons.length)];
+            if (dragonWeapon instanceof SpecialWeapon && !((SpecialWeapon) dragonWeapon).load()) {
+                System.out.println("Der Drache lädt seine Spezialwaffe auf.");
+            } else {
+                if (dragon.attack(player, dragonWeapon, arena.distance(player, dragon))) {
+                    if (dragonWeapon instanceof SpecialWeapon) {
+                        System.out.println("Der Meteorschauer schlägt auf den Helden ein."); //TODO Areal...
+                    } else {
+                        System.out.println("Der Held wurde durch des Drachens Feuer verletzt.");
+                    }
+                } else {
+                    System.out.println("Der Drache hatte eine Fehlzündung. Glück gehabt.");
+                }
+                if (!player.isAlive()) { //Wurde der Held besiegt
+                    System.out.println("Der Held wurde besiegt. Oh nein.");
+                    break;
+                }
+            }
             System.out.println(player); //Ausgabe der Lebenspunkte
             System.out.println(dragon);
         }

@@ -41,8 +41,4 @@ public abstract class Weapon {
     public int getATK() {
         return atk;
     }
-	
-	public void setATK(int atk){
-		this.atk = atk;
-	}
 }

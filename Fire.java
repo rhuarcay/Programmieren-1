@@ -8,6 +8,4 @@ public class Fire extends Weapon {
     public Fire() {
         super();
     }
-
 }
-

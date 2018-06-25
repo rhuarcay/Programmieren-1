@@ -57,13 +57,11 @@ public class Arena {
         String line = "";
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
-                if (i == player.getY() && j == player.getX()) {
+                if (i == player.getY() && j == player.getX())
                     line += player.getSymbol(); //Befindet sich hier der Player
-                } else if (i == dragon.getY() && j == dragon.getX()) {
-                    line += dragon.getSymbol(); //Befindet sich hier der Drache
-                } else {
-                    line += map[i][j];  
-                } 
+                else if (i == dragon.getY() && j == dragon.getX())
+                    line += dragon.getSymbol(); //Befindet sich hier der Spieler
+                else line += map[i][j];
             }
             result += (line + "\n");
             line = "";
@@ -91,9 +89,8 @@ public class Arena {
      */
     public boolean walkable(int y, int x) {
         boolean wall = map[y][x] != '#'; //Ist dort eine Wand?
-		boolean wall2 = map[y][x] != '%'; //Wand von Katapult?
         boolean drago = dragon.getX() != x || dragon.getY() != y; //Ist dort ein Drache?
-        return wall && wall2 && drago;
+        return wall && drago;
     }
 
     /**
@@ -110,21 +107,5 @@ public class Arena {
      */
     public Dragon getDragon() {
         return dragon;
-    }
-	
-	 /**
-     * Gibt den Map der Map zurück
-     * @return Map der Map
-     */
-    public char[][] getMap() {
-        return map;
-    }
-	
-	    /**
-     * Setzt Map auf übergebenen Wert
-     * @param Map Neue Lebenspunkte
-     */
-    public void setMap(int i, int j, char wall) {
-        this.map[i][j] = wall;
     }
 }
